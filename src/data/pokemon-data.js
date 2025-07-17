@@ -14,7 +14,14 @@ async function fetchPokemonList(listUrl) {
   });
 }
 
-// fetchPokemonList(pokemonListUrl).then((data) => console.log(data));
+let pokemonData;
+try {
+  pokemonData = await fetchPokemonList(pokemonListUrl);
+} catch(error) {
+  console.error("Fetch pokemon list failed:", error.message);
+}
 
-export default fetchPokemonList(pokemonListUrl);
+// console.log(pokemonData);
+
+export default pokemonData;
 
