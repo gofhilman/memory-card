@@ -14,7 +14,7 @@ export default function Game(props) {
   }, [catchedIds]);
 
   return (
-    <div>
+    <div className="grid grid-cols-[repeat(auto-fill,minmax(200px,1fr))] gap-5">
       {revealedPokemon.map((pokemon) => {
         return (
           <Card

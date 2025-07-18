@@ -26,7 +26,11 @@ export default function Card({
   });
   const handleCardPick = async () => {
     if (catchedIds.includes(pokemon.id)) {
-      setScoreboard({ score: 0, bestScore: scoreboard.score });
+      if (scoreboard.score >= scoreboard.bestScore) {
+        setScoreboard({ score: 0, bestScore: scoreboard.score });
+      } else {
+        setScoreboard({ score: 0, bestScore: scoreboard.bestScore });
+      }
       setCatchedIds([]);
     } else {
       setScoreboard({
@@ -38,9 +42,12 @@ export default function Card({
     setRevealedPokemon(revealPokemon(await pokemonData, catchedIds));
   };
   return (
-    <article onClick={handleCardPick}>
+    <div
+      onClick={handleCardPick}
+      className="flex flex-col items-center bg-gray-200 p-4"
+    >
       <h2>{pokemon.name}</h2>
-      <img src={imageUrl} alt="Pokemon image" className="w-20" />
-    </article>
+      <img src={imageUrl} alt="Pokemon image" className="w-40" />
+    </div>
   );
 }
