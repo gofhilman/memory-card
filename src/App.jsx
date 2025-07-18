@@ -8,7 +8,7 @@ function App() {
   return (
     <div>
       <Header scoreboard={scoreboard} />
-      <Game setScoreboard={setScoreboard} />
+      <Game scoreboard={scoreboard} setScoreboard={setScoreboard} />
     </div>
   );
 }

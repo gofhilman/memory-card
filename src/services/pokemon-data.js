@@ -1,5 +1,6 @@
 // HOW TO USE
 // const jsonObj = {results: [{ id: pokemonId, name: pokemonName, url: pokemonUrl }, ...]};
+// const pokemonUrlJsonObj = { sprites: { other: { [official-artwork]: { front_default: pokemonFrontDefault } } } };
 
 const CARD_VARIATION = 100;
 const pokemonListUrl = `https://pokeapi.co/api/v2/pokemon?limit=${CARD_VARIATION}&offset=0`;
@@ -9,19 +10,18 @@ async function fetchPokemonList(listUrl) {
   if (!response.ok) throw new Error(`Response status: ${response.status}`);
   const data = await response.json();
   return data.results.map((item, index) => {
-    item.id = index;
+    item.id = index + 1;
     return item;
   });
 }
 
 let pokemonData;
 try {
-  pokemonData = await fetchPokemonList(pokemonListUrl);
-} catch(error) {
+  pokemonData = fetchPokemonList(pokemonListUrl);
+} catch (error) {
   console.error("Fetch pokemon list failed:", error.message);
 }
 
 // console.log(pokemonData);
 
 export default pokemonData;
-
